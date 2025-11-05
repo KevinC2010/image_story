@@ -1,19 +1,22 @@
-import { lusitana } from '@/app/ui/fonts';
+import { lusitana } from "@/app/ui/fonts";
 import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
-} from '@heroicons/react/24/outline';
-import { ArrowRightIcon } from '@heroicons/react/20/solid';
-import { Button } from './button';
+} from "@heroicons/react/24/outline";
+import {} from "@heroicons/react/20/solid";
+import { Button } from "./button";
 
 export default function LoginForm() {
   return (
     <form className="space-y-3">
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-          Please log in to continue.
+      <div className="flex-1 rounded-lg bg-gray-200 px-6 pb-4 pt-8">
+        <h1
+          className={`${lusitana.className} text-center font-semibold text-gray-900 mb-3 text-4xl`}
+        >
+          LOGIN
         </h1>
+
         <div className="w-full">
           <div>
             <label
@@ -55,9 +58,12 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <Button className="mt-4 w-full">
-          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-        </Button>
+
+        <div className="flex justify-center space-x-4 mt-4">
+          <Button className="w-40 justify-center ">Log in</Button>
+          <Button className="w-40 justify-center ">Register</Button>
+        </div>
+
         <div className="flex h-8 items-end space-x-1">
           {/* Add form errors here */}
         </div>
