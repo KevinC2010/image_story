@@ -1,7 +1,7 @@
 import "@/app/ui/global.css";
 import { inter } from "@/app/ui/fonts";
 import { Metadata } from "next";
-
+import backgroundImage from "../public/bn20.jpg";
 export const metadata: Metadata = {
   title: {
     template: "%s | Acme Dashboard",

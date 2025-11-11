@@ -1,0 +1,1 @@
+- [x] Add CSS rule to change placeholder text color to white for input fields in login form

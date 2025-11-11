@@ -2,17 +2,239 @@
 @tailwind components;
 @tailwind utilities;
 
-input[type='number'] {
+body {
+  background-image: url("/bn20.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+/* Menghapus panah input number*/
+input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
-
-input[type='number']::-webkit-inner-spin-button {
+/* Menghapus panah input number dalam*/
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-input[type='number']::-webkit-outer-spin-button {
+/* Menghapus panah input number luar*/
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+/*blok after dan before hanya memastikan pseudo-element juga mengikuti aturan modern yang sama*/
+:after,
+:before {
+  /*mengatur secara otomatis (box model) jadi lebar dan tinggi yang Anda tetapkan sudah termasuk padding dan border*/
+  box-sizing: border-box;
+}
+
+/*clearfix menggunakan pseudo-element untuk memaksa container induk agar menghitung dan menampung tinggi elemen yang di-float.*/
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: table;
+}
+/*memaksa container induk untuk menyesuaikan tingginya secara benar*/
+.clearfix:after {
+  clear: both;
+  display: block;
+}
+/*contoh: 
+<div class="clearfix">
+  <div style="float: left;">Gambar</div>
+  <p style="float: right;">Teks</p>
+</div> 
+<!-- Container Div sekarang tidak runtuh karena .clearfix -->
+*/
+
+a {
+  /*mengabaikan warna default browser dan mengikuti warna dari tulisan induk*/
+  color: white;
+
+  /*garis bawah tersebut akan dihilangkan,*/
+  text-decoration: none;
+}
+
+.login-wrap {
+  /*kotak ini mengambil lebar penuh yang tersedia di dalam container*/
+  width: 100%;
+  /*terpusat secara horizontal di tengah layar*/
+  margin: auto;
+  /*mencegah formulir menjadi terlalu lebar di desktop tetapi memungkinkannya menyusut di perangkat seluler*/
+  max-width: 525px;
+  /*memastikan formulir memiliki ruang yang cukup meskipun konten di dalamnya mungkin tidak setinggi itu*/
+  min-height: 580px;
+  /*Properti ini mendefinisikan login-wrap sebagai titik acuan untuk semua elemen anak yang memiliki position: absolute; (seperti .login-html)*/
+  position: relative;
+  border-radius: 35px;
+  /*menambahkan bayangan kompleks di sekitar kotak formulir*/
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  background: url(@/public/9384845.jpg) no-repeat center;
+}
+.title {
+  color: white;
+  font-size: 25px;
+  font-weight:900;
+  padding-left:10px;
+  margin-bottom:40px;
+  
+}
+.login-html {
+  /*Memastikan elemen ini mengisi seluruh ruang kotak induknya (.login-wrap)*/
+  width: 100%;
+  height: 100%;
+  /*elemen ini akan diposisikan relatif terhadap induknya (.login-wrap) memiliki position: relative;*/
+  position: absolute;
+  border-radius: 35px;
+  /*Memberikan ruang internal yang besar di dalam kotak*/
+  padding: 50px 70px 50px 70px;
+  /*atar belakang kotak ini menjadi warna dengan tingkat transparansi 90% (.9). Ini memberikan efek buram (glassy/frosted)*/
+  background: rgba(54, 206, 160, 0.9);
+}
+
+/*Efek Putar 3D*/
+.login-html .sign-in-htm,
+.login-html .sign-up-htm {
+  /*Memastikan elemen ini mengisi seluruh ruang dari elemen induknya (.login-html). Karena elemen induknya sudah relatif (position: relative), elemen anak ini akan menutupi seluruh area padding di dalamnya.*/
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /*diposisikan secara mutlak relatif terhadap induknya, dan memungkinkannya menggunakan properti transform untuk rotasi 3D*/
+  position: absolute;
+  /*memutar elemen sebesar 180 derajat pada sumbu Y*/
+  transform: rotateY(180deg);
+  /*menyembunyikan elemen yang terbalik sehingga tidak terlihat saat diputar*/
+  backface-visibility: hidden;
+  /*menambahkan transisi halus saat elemen diputar*/
+  transition: all 0.4s linear;
+}
+/*Menyembunyikan Kontrol Input */
+/*menargetkan elemen <input type="radio">*/
+.login-html .sign-in,
+.login-html .sign-up,
+/*menargetkan input lain*/
+.login-form .group .check {
+  /*Menyembunyikan elemen-elemen ini dari tampilan.*/
+  display: none;
+}
+
+/*Penataan Teks*/
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button {
+  /*teks di semua elemen yang ditargetkan (Tab "Sign In/Up", Label input, dan Tombol) harus ditampilkan dalam huruf kapital*/
+  text-transform: uppercase;
+}
+
+/*Penataan Gaya Tombol Tab*/
+.login-html .tab {
+  font-size: 22px;
+  /*Memberikan jarak di sebelah kanan antara tab pertama dan tab kedua.*/
+  margin-right: 15px;
+  /*Mengatur semua margin tab (Atas: 0, Kanan: 15px, Bawah: 10px, Kiri: 0). Ini menimpa margin-right sebelumnya, tetapi menetapkan jarak bawah untuk memisahkan tab dari konten form di bawahnya*/
+  margin: 0 15px 20px 0;
+  /*dua elemen tab berada di baris yang sama*/
+  display: inline-block;
+  /*Membuat garis bawah setebal 2px, tetapi warnanya transparan*/
+  border: 2px solid transparent;
+  border-radius: 15px;
+  background-color: rgba(39, 145, 113, 0.9);
+  color: #ffffff;
+}
+/*Efek Tab Aktif*/
+/*input:checked + label: Ini adalah trik CSS murni. Ia memilih elemen <label> (tab) yang langsung mengikuti (+) sebuah <input type="radio"> yang sedang dalam status tercentang (:checked).*/
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab {
+  /*Mengubah warna teks tab yang aktif menjadi hitam*/
+  color: #000000;
+  /*Mengubah warna background jadi putih*/
+  background-color: #ffffff;
+}
+/*Kotak Konten Form*/
+.login-form {
+  /*Menetapkan tinggi minimum untuk area form, memastikan layout tidak runtuh.*/
+  min-height: 345px;
+  /*Mengatur posisi relatif untuk memungkinkan penempatan elemen anak secara absolut di dalamnya.*/
+  position: relative;
+  /*Memberikan efek perspektif 3D pada elemen anaknya.*/
+  perspective: 1000px;
+  /*Memastikan elemen anak mempertahankan properti 3D mereka saat diputar.*/
+  transform-style: preserve-3d;
+}
+/*Jarak Antar Input*/
+.login-form .group {
+  margin-bottom: 15px;
+}
+/*pengaturan Label, Input, Tombo*/
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button {
+  width: 100%;
+  color: #ffffff;
+  /*stacking secara vertikal dan width: 100%; bekerja dengan benar.*/
+  display: block;
+}
+/*Penataan Gaya Input dan Tombol*/
+.login-form .group .input,
+.login-form .group .button {
+  /*Menghapus border default pada input dan tombol.*/
+  border: none;
+  padding-right: 20px;
+  /* Tambahkan !important untuk menimpa padding-left Tailwind (pl-10) di JSX */
+  padding-left: 40px !important;
+  /*membuat sudut yang sangat melengkung*/
+  border-radius: 25px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Change placeholder text color to white */
+.login-form .group .input::placeholder {
+  color: #ffffff;
+}
+/*Keamanan Visual*/
+.login-form .group input[data-type="password"] {
+  /*Mengganti karakter yang diketik dengan lingkaran untuk keamanan visual.*/
+  text-security: circle;
+  /*Untuk browser WebKit (seperti Chrome dan Safari)*/
+  -webkit-text-security: circle;
+}
+/*Penataan Gaya Label*/
+.login-form .group .label {
+  color: #ffffff;
+  font-size: 12px;
+}
+/*Penataan Gaya Tombol*/
+.login-form .group .button {
+  background: #1161ee;
+}
+/*Efek Putar 3D untuk Form Sign In dan Sign Up*/
+/*rantai selektor yang sangat spesifik dan bergantung pada struktur HTML Anda:*/
+.login-html /* Memulai dari elemen dengan kelas .login-html */
+  .sign-in:checked /* Memilih input radio dengan kelas .sign-in yang dicentang */
+  + .tab /* Memilih elemen saudara berikutnya dengan kelas .tab */
+  + .sign-up /* Memilih elemen saudara berikutnya dengan kelas .sign-up */
+  + .tab /* Memilih elemen saudara berikutnya dengan kelas .tab */
+  + .login-form /* Memilih elemen saudara berikutnya dengan kelas .login-form */
+  .sign-in-htm /* Akhirnya memilih elemen dengan kelas .sign-in-htm di dalam .login-form */ {
+  /*Memutar elemen .sign-in-htm kembali ke posisi normal (0 derajat) pada sumbu Y, membuatnya terlihat.*/
+  transform: rotate(0);
+}
+/*Efek Rotasi Sign Up*/
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
+  /*Memutar elemen .sign-up-htm kembali ke posisi normal (0 derajat) pada sumbu Y, membuatnya terlihat.*/
+  transform: rotate(0);
+}
+/*Garis Pemisah*/
+.hr {
+  height: 2px;
+  margin: 60px 0 50px 0;
+  background: rgba(252, 252, 252, 0.836);
+}
+.foot-lnk {
+  text-align: center;
 }
